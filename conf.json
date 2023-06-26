@@ -1,0 +1,16 @@
+{
+    "user": {
+        "superAdmin": {
+            "nickname": "Super Administrator",
+            "account": "_Yu962669816",
+            "password": "_Yu962669816"
+        }
+    },
+    "role": {
+        "superAdmin": {
+            "rolename": "superAdmin",
+            "rolekey": "_SuperAdmin",
+            "remark": "system default superadmin"
+        }
+    }
+}

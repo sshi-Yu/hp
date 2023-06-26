@@ -1,0 +1,2388 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/user/add": {
+      "post": {
+        "operationId": "UserController_create",
+        "summary": "create one new user",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/page": {
+      "get": {
+        "operationId": "UserController_findAll",
+        "summary": "find all user by page",
+        "parameters": [
+          {
+            "name": "pageNum",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "isDel",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasRole",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "operationId": "UserController_findOne",
+        "summary": "find one user by id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isDel",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasRole",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/update": {
+      "patch": {
+        "operationId": "UserController_update",
+        "summary": "update a user with given id and user object",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "query",
+            "description": "user id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/disable{id}": {
+      "delete": {
+        "operationId": "UserController_disable",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/enable/{id}": {
+      "patch": {
+        "operationId": "UserController_enable",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/log/page": {
+      "get": {
+        "operationId": "LogController_getLogs",
+        "summary": "Get all log items by page",
+        "parameters": [
+          {
+            "name": "pageNum",
+            "required": true,
+            "in": "query",
+            "description": "页码",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "description": "每页条数",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "log"
+        ]
+      }
+    },
+    "/log/type": {
+      "get": {
+        "operationId": "LogController_getLogsByType",
+        "summary": "Get all log items by type",
+        "parameters": [
+          {
+            "name": "pageNum",
+            "required": true,
+            "in": "query",
+            "description": "页码",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "description": "每页条数",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "type",
+            "required": true,
+            "in": "query",
+            "description": "日志类型",
+            "schema": {
+              "enum": [
+                "Error",
+                "Message"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "log"
+        ]
+      }
+    },
+    "/role/add": {
+      "post": {
+        "operationId": "RoleController_create",
+        "summary": "create one new role",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Role"
+        ]
+      }
+    },
+    "/role": {
+      "get": {
+        "operationId": "RoleController_findAll",
+        "summary": "find role list by page",
+        "parameters": [
+          {
+            "name": "pageNum",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "isDel",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasAuth",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Role"
+        ]
+      }
+    },
+    "/role/{id}": {
+      "get": {
+        "operationId": "RoleController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Role"
+        ]
+      },
+      "patch": {
+        "operationId": "RoleController_update",
+        "summary": "update role info",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRoleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Role"
+        ]
+      }
+    },
+    "/role/remove{id}": {
+      "delete": {
+        "operationId": "RoleController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Role"
+        ]
+      }
+    },
+    "/role/enable/{id}": {
+      "patch": {
+        "operationId": "RoleController_enable",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Role"
+        ]
+      }
+    },
+    "/auth/add": {
+      "post": {
+        "operationId": "AuthController_create",
+        "summary": "create one new auth",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAuthDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/page": {
+      "get": {
+        "operationId": "AuthController_findAll",
+        "summary": "find auth by page",
+        "parameters": [
+          {
+            "name": "pageNum",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "isDel",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/{id}": {
+      "get": {
+        "operationId": "AuthController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      },
+      "patch": {
+        "operationId": "AuthController_update",
+        "summary": "update auth info",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAuthDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/remove{id}": {
+      "delete": {
+        "operationId": "AuthController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/enable/{id}": {
+      "patch": {
+        "operationId": "AuthController_enable",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/page": {
+      "post": {
+        "operationId": "PageController_create",
+        "summary": "create one new page",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Page"
+        ]
+      }
+    },
+    "/page/page": {
+      "get": {
+        "operationId": "PageController_findAll",
+        "summary": "find page list by page",
+        "parameters": [
+          {
+            "name": "pageNum",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "isDel",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasAuth",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Page"
+        ]
+      }
+    },
+    "/page/{id}": {
+      "get": {
+        "operationId": "PageController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Page"
+        ]
+      },
+      "patch": {
+        "operationId": "PageController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Page"
+        ]
+      }
+    },
+    "/page/remove{id}": {
+      "delete": {
+        "operationId": "PageController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Page"
+        ]
+      }
+    },
+    "/page/enable/{id}": {
+      "patch": {
+        "operationId": "PageController_enable",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Page"
+        ]
+      }
+    },
+    "/apis/json": {
+      "get": {
+        "operationId": "ApisController_getApiJson",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Apis"
+        ]
+      }
+    },
+    "/login": {
+      "post": {
+        "operationId": "LoginController_create",
+        "parameters": [
+          {
+            "name": "userAccount",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userPassword",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Login"
+        ]
+      }
+    },
+    "/login/refresh": {
+      "post": {
+        "operationId": "LoginController_refresh",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Login"
+        ]
+      }
+    },
+    "/post/add": {
+      "post": {
+        "operationId": "PostController_create",
+        "summary": "create one new post",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePostDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post"
+        ]
+      }
+    },
+    "/post/page": {
+      "get": {
+        "operationId": "PostController_findAll",
+        "summary": "get all post by page",
+        "parameters": [
+          {
+            "name": "pageNum",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "R",
+                "O",
+                "T"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "visibleRange",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "P",
+                "O",
+                "L"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "isDel",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post"
+        ]
+      }
+    },
+    "/post/version": {
+      "post": {
+        "operationId": "PostController_hanldeVersion",
+        "summary": "Change the version number of the post",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "uuid"
+            }
+          },
+          {
+            "name": "version",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post"
+        ]
+      }
+    },
+    "/post/{id}": {
+      "get": {
+        "operationId": "PostController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post"
+        ]
+      },
+      "patch": {
+        "operationId": "PostController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePostDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post"
+        ]
+      }
+    },
+    "/post/remove/{id}": {
+      "delete": {
+        "operationId": "PostController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post"
+        ]
+      }
+    },
+    "/post/enable/{id}": {
+      "patch": {
+        "operationId": "PostController_enable",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post"
+        ]
+      }
+    },
+    "/tag": {
+      "post": {
+        "operationId": "TagController_create",
+        "summary": "create one new tag",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTagDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Tag"
+        ]
+      }
+    },
+    "/tag/page": {
+      "get": {
+        "operationId": "TagController_findAll",
+        "summary": "find all tag by page",
+        "parameters": [
+          {
+            "name": "pageNum",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "isDel",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasPost",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Tag"
+        ]
+      }
+    },
+    "/tag/{id}": {
+      "get": {
+        "operationId": "TagController_findOne",
+        "summary": "find one tag by id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isDel",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasPost",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Tag"
+        ]
+      },
+      "patch": {
+        "operationId": "TagController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTagDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Tag"
+        ]
+      }
+    },
+    "/tag/remove/{id}": {
+      "delete": {
+        "operationId": "TagController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Tag"
+        ]
+      }
+    },
+    "/tag/enable/{id}": {
+      "patch": {
+        "operationId": "TagController_enable",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Tag"
+        ]
+      }
+    },
+    "/file/upload": {
+      "post": {
+        "operationId": "FileController_upload",
+        "summary": "upload image file",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "File"
+        ]
+      }
+    },
+    "/file/upload/mass": {
+      "post": {
+        "operationId": "FileController_massUpload",
+        "summary": "mass upload image files",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "File"
+        ]
+      }
+    },
+    "/file/page": {
+      "get": {
+        "operationId": "FileController_findAll",
+        "summary": "find files by page",
+        "parameters": [
+          {
+            "name": "pageNum",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "isDel",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "visibleRange",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "P",
+                "O",
+                "L"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "avatar",
+                "photo",
+                "illustration"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "File"
+        ]
+      }
+    },
+    "/file/{id}": {
+      "get": {
+        "operationId": "FileController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "File"
+        ]
+      }
+    },
+    "/file/remove{id}": {
+      "delete": {
+        "operationId": "FileController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "File"
+        ]
+      }
+    },
+    "/file/enable/{id}": {
+      "patch": {
+        "operationId": "FileController_enable",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "File"
+        ]
+      }
+    },
+    "/category": {
+      "post": {
+        "operationId": "CategoryController_create",
+        "summary": "create one new category",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCategoryDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Category"
+        ]
+      }
+    },
+    "/category/page": {
+      "get": {
+        "operationId": "CategoryController_findAll",
+        "summary": "find all category by page",
+        "parameters": [
+          {
+            "name": "pageNum",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "isDel",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasPost",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Category"
+        ]
+      }
+    },
+    "/category/{id}": {
+      "get": {
+        "operationId": "CategoryController_findOne",
+        "summary": "find one category by id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isDel",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasPost",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Category"
+        ]
+      },
+      "patch": {
+        "operationId": "CategoryController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCategoryDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Category"
+        ]
+      }
+    },
+    "/category/remove/{id}": {
+      "delete": {
+        "operationId": "CategoryController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Category"
+        ]
+      }
+    },
+    "/category/enable/{id}": {
+      "patch": {
+        "operationId": "CategoryController_enable",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Category"
+        ]
+      }
+    },
+    "/post-content/update": {
+      "post": {
+        "operationId": "PostContentController_update",
+        "summary": "update post content",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "query",
+            "description": "The id of the post content",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateNewPostContentCopy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post-Content"
+        ]
+      }
+    },
+    "/post-content/draft": {
+      "post": {
+        "operationId": "PostContentController_createDraft",
+        "summary": "create one new draft",
+        "parameters": [
+          {
+            "name": "postId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateNewPostContentCopy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post-Content"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "My API",
+    "description": "The description of my API",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "token": {
+        "type": "apiKey",
+        "scheme": "basic",
+        "name": "access-token",
+        "description": "user token authentication",
+        "in": "headers"
+      }
+    },
+    "schemas": {
+      "CreateUserDto": {
+        "type": "object",
+        "properties": {
+          "userAccount": {
+            "type": "string",
+            "description": "The userAccount must start with a uppercase letter and contain 5 to 12 letters and digits and underscores"
+          },
+          "userPassword": {
+            "type": "string",
+            "description": "The userPassword must start with a uppercase letter and contain only letters, digits, and underscores (_)"
+          },
+          "nickName": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 8
+          }
+        },
+        "required": [
+          "userAccount",
+          "userPassword"
+        ]
+      },
+      "UpdateUserDto": {
+        "type": "object",
+        "properties": {
+          "nickName": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 8
+          },
+          "sex": {
+            "type": "number",
+            "enum": [
+              0,
+              1,
+              2
+            ],
+            "description": "\n            {\n                Unknown = 0,\n                Man = 1,\n                Woman = 2\n            }\n        ",
+            "default": 0
+          },
+          "age": {
+            "type": "number"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "signature": {
+            "type": "string",
+            "minLength": 16,
+            "maxLength": 99
+          },
+          "hobbies": {
+            "description": "['a', 'b']",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "phone": {
+            "type": "string",
+            "description": "phone number"
+          },
+          "email": {
+            "type": "string",
+            "description": "email"
+          },
+          "qq": {
+            "type": "string",
+            "description": "qq Code"
+          },
+          "wechat": {
+            "type": "string",
+            "description": "wechat Code"
+          },
+          "wechatQrcode": {
+            "type": "string",
+            "description": "An online wechat qrcode image url is available"
+          },
+          "roles": {
+            "description": "role id list",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "nickName",
+          "sex",
+          "age",
+          "avatar",
+          "signature",
+          "hobbies",
+          "email",
+          "qq",
+          "wechat",
+          "wechatQrcode",
+          "roles"
+        ]
+      },
+      "CreateRoleDto": {
+        "type": "object",
+        "properties": {
+          "roleName": {
+            "type": "string",
+            "description": "role name",
+            "minLength": 2,
+            "maxLength": 12
+          },
+          "roleKey": {
+            "type": "string",
+            "description": "role key",
+            "minLength": 4,
+            "maxLength": 12
+          },
+          "remark": {
+            "type": "string",
+            "description": "remark",
+            "maxLength": 99
+          },
+          "auths": {
+            "description": "auth list",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "roleName",
+          "roleKey",
+          "remark",
+          "auths"
+        ]
+      },
+      "UpdateRoleDto": {
+        "type": "object",
+        "properties": {
+          "roleName": {
+            "type": "string",
+            "description": "role name",
+            "minLength": 2,
+            "maxLength": 6
+          },
+          "roleKey": {
+            "type": "string",
+            "description": "role key",
+            "minLength": 4,
+            "maxLength": 8
+          },
+          "remark": {
+            "type": "string",
+            "description": "remark",
+            "maxLength": 99
+          },
+          "auths": {
+            "description": "auth list",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "roleName",
+          "roleKey",
+          "remark",
+          "auths"
+        ]
+      },
+      "CreateAuthDto": {
+        "type": "object",
+        "properties": {
+          "authName": {
+            "type": "string",
+            "description": "auth name",
+            "minLength": 2,
+            "maxLength": 12
+          },
+          "authKey": {
+            "type": "string",
+            "description": "auth key",
+            "minLength": 5,
+            "maxLength": 24
+          },
+          "remark": {
+            "type": "string",
+            "description": "remark",
+            "maxLength": 50
+          },
+          "path": {
+            "type": "string",
+            "description": "path"
+          },
+          "roles": {
+            "description": "roles",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "authName",
+          "authKey",
+          "remark",
+          "path",
+          "roles"
+        ]
+      },
+      "UpdateAuthDto": {
+        "type": "object",
+        "properties": {
+          "authName": {
+            "type": "string",
+            "description": "auth name",
+            "minLength": 2,
+            "maxLength": 12
+          },
+          "authKey": {
+            "type": "string",
+            "description": "auth key",
+            "minLength": 5,
+            "maxLength": 24
+          },
+          "remark": {
+            "type": "string",
+            "description": "remark",
+            "maxLength": 50
+          },
+          "path": {
+            "type": "string",
+            "description": "path"
+          },
+          "roles": {
+            "description": "roles",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "authName",
+          "authKey",
+          "remark",
+          "path",
+          "roles"
+        ]
+      },
+      "CreatePageDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "page title",
+            "minLength": 2,
+            "maxLength": 20
+          },
+          "path": {
+            "type": "string",
+            "description": "page path",
+            "minLength": 4,
+            "maxLength": 45
+          },
+          "sort": {
+            "type": "number",
+            "description": "page sort order",
+            "minimum": 0,
+            "maximum": 999
+          },
+          "component": {
+            "type": "string",
+            "description": "component path",
+            "minLength": 4,
+            "maxLength": 45
+          },
+          "isIframe": {
+            "type": "string",
+            "description": "is it iframe",
+            "default": "1",
+            "enum": [
+              "0",
+              "1"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "description": "page type",
+            "default": "P",
+            "enum": [
+              "P",
+              "B"
+            ]
+          },
+          "isLink": {
+            "type": "string",
+            "description": "is it external link",
+            "default": "1",
+            "enum": [
+              "0",
+              "1"
+            ]
+          },
+          "visible": {
+            "type": "string",
+            "description": "visible",
+            "default": "0",
+            "enum": [
+              "0",
+              "1"
+            ]
+          },
+          "redirect": {
+            "type": "string",
+            "description": "redirect path",
+            "minLength": 4,
+            "maxLength": 45
+          },
+          "prefixIcon": {
+            "type": "string",
+            "description": "prefix icon",
+            "minLength": 4,
+            "maxLength": 20
+          },
+          "suffixIcon": {
+            "type": "string",
+            "description": "suffix icon",
+            "minLength": 4,
+            "maxLength": 20
+          },
+          "remark": {
+            "type": "string",
+            "description": "remark",
+            "minLength": 4,
+            "maxLength": 50
+          },
+          "auth": {
+            "type": "string",
+            "description": "auth id"
+          }
+        },
+        "required": [
+          "title",
+          "path",
+          "sort",
+          "component",
+          "isIframe",
+          "type",
+          "isLink",
+          "visible",
+          "redirect",
+          "prefixIcon",
+          "suffixIcon",
+          "remark",
+          "auth"
+        ]
+      },
+      "UpdatePageDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "page title",
+            "minLength": 2,
+            "maxLength": 20
+          },
+          "path": {
+            "type": "string",
+            "description": "page path",
+            "minLength": 4,
+            "maxLength": 45
+          },
+          "sort": {
+            "type": "number",
+            "description": "page sort order",
+            "minimum": 0,
+            "maximum": 999
+          },
+          "component": {
+            "type": "string",
+            "description": "component path",
+            "minLength": 4,
+            "maxLength": 45
+          },
+          "isIframe": {
+            "type": "string",
+            "description": "is it iframe",
+            "default": "1",
+            "enum": [
+              "0",
+              "1"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "description": "page type",
+            "default": "P",
+            "enum": [
+              "P",
+              "B"
+            ]
+          },
+          "isLink": {
+            "type": "string",
+            "description": "is it external link",
+            "default": "1",
+            "enum": [
+              "0",
+              "1"
+            ]
+          },
+          "visible": {
+            "type": "string",
+            "description": "visible",
+            "default": "0",
+            "enum": [
+              "0",
+              "1"
+            ]
+          },
+          "redirect": {
+            "type": "string",
+            "description": "redirect path",
+            "minLength": 4,
+            "maxLength": 45
+          },
+          "prefixIcon": {
+            "type": "string",
+            "description": "prefix icon",
+            "minLength": 4,
+            "maxLength": 20
+          },
+          "suffixIcon": {
+            "type": "string",
+            "description": "suffix icon",
+            "minLength": 4,
+            "maxLength": 20
+          },
+          "remark": {
+            "type": "string",
+            "description": "remark",
+            "minLength": 4,
+            "maxLength": 50
+          },
+          "auth": {
+            "type": "string",
+            "description": "auth id"
+          }
+        },
+        "required": [
+          "title",
+          "path",
+          "sort",
+          "component",
+          "isIframe",
+          "type",
+          "isLink",
+          "visible",
+          "redirect",
+          "prefixIcon",
+          "suffixIcon",
+          "remark",
+          "auth"
+        ]
+      },
+      "CreatePostDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "title",
+            "minLength": 3,
+            "maxLength": 99
+          },
+          "type": {
+            "type": "string",
+            "description": "type",
+            "enum": [
+              "R",
+              "O",
+              "T"
+            ]
+          },
+          "coverImage": {
+            "type": "string",
+            "description": "cover image"
+          },
+          "summary": {
+            "type": "string",
+            "description": "summary",
+            "maxLength": 180
+          },
+          "visibleRange": {
+            "type": "string",
+            "description": "visible range",
+            "enum": [
+              "P",
+              "O",
+              "L"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "description": "content"
+          },
+          "category": {
+            "type": "array",
+            "description": "catgory list"
+          },
+          "tags": {
+            "type": "array",
+            "description": "tag list"
+          }
+        },
+        "required": [
+          "title",
+          "type",
+          "coverImage",
+          "summary",
+          "visibleRange",
+          "content",
+          "category",
+          "tags"
+        ]
+      },
+      "UpdatePostDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateTagDto": {
+        "type": "object",
+        "properties": {
+          "tagName": {
+            "type": "string",
+            "description": "标签名称"
+          },
+          "remark": {
+            "type": "string",
+            "description": "标签备注"
+          },
+          "iconName": {
+            "type": "string",
+            "description": "小图标"
+          },
+          "postIds": {
+            "description": "Post ids",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "tagName",
+          "remark",
+          "iconName"
+        ]
+      },
+      "UpdateTagDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateFileDto": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "file description",
+            "maxLength": 101
+          },
+          "visibleRange": {
+            "type": "string",
+            "description": "file visible range",
+            "enum": [
+              "P",
+              "O",
+              "L"
+            ],
+            "default": "P"
+          },
+          "type": {
+            "type": "string",
+            "description": "file type",
+            "enum": [
+              "avatar",
+              "photo",
+              "illustration"
+            ],
+            "default": "illustration"
+          }
+        },
+        "required": [
+          "description",
+          "visibleRange",
+          "type"
+        ]
+      },
+      "CreateCategoryDto": {
+        "type": "object",
+        "properties": {
+          "categoryName": {
+            "type": "string",
+            "description": "标签名称"
+          },
+          "remark": {
+            "type": "string",
+            "description": "标签备注"
+          },
+          "iconName": {
+            "type": "string",
+            "description": "小图标"
+          },
+          "postIds": {
+            "description": "Post ids",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "categoryName",
+          "remark",
+          "iconName"
+        ]
+      },
+      "UpdateCategoryDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateNewPostContentCopy": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "post content"
+          },
+          "postId": {
+            "type": "string",
+            "description": "post id"
+          }
+        },
+        "required": [
+          "content"
+        ]
+      }
+    }
+  }
+}
