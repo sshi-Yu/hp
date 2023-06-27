@@ -9,7 +9,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { Apis } from 'src/common/decorators/Apis.decorator';
 import { HttpStatusCode } from 'src/common/enum/http-code.enum';
 import { AuthTags } from 'src/common/decorators/AuthTag';
-import { ImageType, PostVisibleRange } from 'src/common/enum/common.enum';
+import { ImageType, Message, PostVisibleRange } from 'src/common/enum/common.enum';
 
 @Controller('file')
 @ApiTags("File")
@@ -100,14 +100,27 @@ export class FileController {
     return this.fileService.findOne(id);
   }
 
+  @Patch(':id')
+  @Apis({
+    options: { summary: "update file info" },
+    bodys: [{
+      type: UpdateFileDto
+    }]
+  })
+  // @AuthTags("sys:file:update")
+  update(@Param('id') id: string, @Body() updateAuthDto: UpdateFileDto) {
+    if(!id) throw new BadRequestException(Message.RequiredIdOfUpdateTarget);
+    return this.fileService.update(id, updateAuthDto);
+  }
+
   @Delete('remove:id')
-  // @AuthTags("sys:auth:remove")
+  // @AuthTags("sys:file:remove")
   remove(@Param('id') id: string) {
     return this.fileService.remove(id);
   }
 
   @Patch("enable/:id")
-  // @AuthTags("sys:auth:enable")
+  // @AuthTags("sys:file:enable")
   enable(@Param('id') id: string) {
     return this.fileService.enable(id);
   }

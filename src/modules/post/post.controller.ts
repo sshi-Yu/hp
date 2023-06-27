@@ -46,12 +46,14 @@ export class PostController {
       },
     ]
   })
-  findAll(@Query("pageNum") pageNum: number,
+  async findAll(@Query("pageNum") pageNum: number,
     @Query("pageSize") pageSize: number,
     @Query("type") type: PostType,
     @Query("visibleRange") visibleRange: PostVisibleRange,
     @Query("isDel") isDel?: boolean) {
-    return this.postService.findAll(+pageNum, +pageSize, visibleRange, type, !!isDel);
+    return {
+      data: await this.postService.findAll(+pageNum, +pageSize, visibleRange, type, !!isDel)
+    }
   }
 
   @Post("version")

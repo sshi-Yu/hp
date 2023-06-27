@@ -66,6 +66,7 @@ export class FileService {
     this.eManager.getRepository(File).update({
       visibleRange: updateFileDto.visibleRange,
       description: _trim_around(updateFileDto.description),
+      mimetype: updateFileDto.type,
     }, { id })
   }
 

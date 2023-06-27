@@ -33,6 +33,11 @@ import { MulterModule } from '@nestjs/platform-express';
 import { FileModule } from './modules/file/file.module';
 import { ConfigService } from './config/config.service';
 import { config } from 'process';
+import { File } from './modules/file/entities/file.entity';
+import { Friend } from './modules/friend/entities/friend.entity';
+import { Comment } from './modules/comment/entities/comment.entity';
+import { FriendModule } from './modules/friend/friend.module';
+import { CommentModule } from './modules/comment/comment.module';
 
 @Module({
   imports: [
@@ -49,7 +54,7 @@ import { config } from 'process';
       },
     }),
     // NestJS NestGI support for TypeOrm module.
-    ...buildTypeormConf([Log, User, Role, Auth, Page, Post, PostContent, Tag, Category]),
+    ...buildTypeormConf([Log, User, Role, Auth, Page, Post, PostContent, Tag, Category, File, Friend, Comment]),
     UserModule,
     LogModule,
     CommonModule,
@@ -61,6 +66,8 @@ import { config } from 'process';
     PostModule,
     TagModule,
     FileModule,
+    FriendModule,
+    CommentModule,
     CategoryModule,
     PostContentModule
   ],

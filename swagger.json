@@ -1409,6 +1409,38 @@
         "tags": [
           "File"
         ]
+      },
+      "patch": {
+        "operationId": "FileController_update",
+        "summary": "update file info",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "File"
+        ]
       }
     },
     "/file/remove{id}": {
@@ -1454,6 +1486,382 @@
         },
         "tags": [
           "File"
+        ]
+      }
+    },
+    "/friend": {
+      "post": {
+        "operationId": "FriendController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFriendDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Friend"
+        ]
+      }
+    },
+    "/friend/page": {
+      "get": {
+        "operationId": "FriendController_findAll",
+        "summary": "find files by page",
+        "parameters": [
+          {
+            "name": "pageNum",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "isDel",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "status",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "R",
+                "F",
+                "P"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Friend"
+        ]
+      }
+    },
+    "/friend/one": {
+      "get": {
+        "operationId": "FriendController_findOne",
+        "summary": "",
+        "description": "find one friend by some conditions",
+        "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "url",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "master",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isDel",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Friend"
+        ]
+      }
+    },
+    "/friend/{id}": {
+      "patch": {
+        "operationId": "FriendController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFriendDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Friend"
+        ]
+      }
+    },
+    "/friend/remove{id}": {
+      "delete": {
+        "operationId": "FriendController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Friend"
+        ]
+      }
+    },
+    "/friend/enable/{id}": {
+      "patch": {
+        "operationId": "FriendController_enable",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Friend"
+        ]
+      }
+    },
+    "/comment": {
+      "post": {
+        "operationId": "CommentController_create",
+        "summary": "",
+        "description": "create one new comment",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCommentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Comment"
+        ]
+      }
+    },
+    "/comment/page": {
+      "get": {
+        "operationId": "CommentController_findAll",
+        "summary": "find comment by page",
+        "parameters": [
+          {
+            "name": "pageNum",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "isDel",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasReplies",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasChildren",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCommentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Comment"
+        ]
+      }
+    },
+    "/comment/{id}": {
+      "patch": {
+        "operationId": "CommentController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCommentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Comment"
+        ]
+      }
+    },
+    "/comment/remove{id}": {
+      "delete": {
+        "operationId": "CommentController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Comment"
+        ]
+      }
+    },
+    "/comment/enable/{id}": {
+      "patch": {
+        "operationId": "CommentController_enable",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Comment"
         ]
       }
     },
@@ -2333,6 +2741,210 @@
           "visibleRange",
           "type"
         ]
+      },
+      "UpdateFileDto": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "file description",
+            "maxLength": 101
+          },
+          "visibleRange": {
+            "type": "string",
+            "description": "file visible range",
+            "enum": [
+              "P",
+              "O",
+              "L"
+            ],
+            "default": "P"
+          },
+          "type": {
+            "type": "string",
+            "description": "file type",
+            "enum": [
+              "avatar",
+              "photo",
+              "illustration"
+            ],
+            "default": "illustration"
+          }
+        },
+        "required": [
+          "description",
+          "visibleRange",
+          "type"
+        ]
+      },
+      "CreateFriendDto": {
+        "type": "object",
+        "properties": {
+          "master": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "website master"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "friend's website name"
+          },
+          "url": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "friend's website url"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "friend's avatar url",
+            "maxLength": 128
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "friend's description"
+          },
+          "status": {
+            "type": "string",
+            "description": "Friend link application status",
+            "enum": [
+              "R",
+              "F",
+              "P"
+            ],
+            "default": "P"
+          }
+        },
+        "required": [
+          "master",
+          "name",
+          "url",
+          "avatar",
+          "description",
+          "status"
+        ]
+      },
+      "UpdateFriendDto": {
+        "type": "object",
+        "properties": {
+          "master": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "website master"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "friend's website name"
+          },
+          "url": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "friend's website url"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "friend's avatar url",
+            "maxLength": 128
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "friend's description"
+          },
+          "status": {
+            "type": "string",
+            "description": "Friend link application status",
+            "enum": [
+              "R",
+              "F",
+              "P"
+            ],
+            "default": "P"
+          }
+        },
+        "required": [
+          "master",
+          "name",
+          "url",
+          "avatar",
+          "description",
+          "status"
+        ]
+      },
+      "CreateCommentDto": {
+        "type": "object",
+        "properties": {
+          "nickName": {
+            "type": "string",
+            "maxLength": 28,
+            "description": "nickname"
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "email"
+          },
+          "website": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "website address"
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 199,
+            "description": "comment content"
+          },
+          "source": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "id of the binding target"
+          },
+          "sourceType": {
+            "type": "string",
+            "enum": [
+              "P",
+              "T",
+              "F"
+            ]
+          },
+          "replyTo": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "id of the reply target"
+          },
+          "like": {
+            "type": "integer",
+            "default": 0
+          },
+          "isTop": {
+            "type": "boolean",
+            "default": false
+          },
+          "allowComment": {
+            "type": "boolean",
+            "default": true
+          },
+          "parentId": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "id of the parent",
+            "nullable": true
+          }
+        },
+        "required": [
+          "nickName",
+          "email",
+          "website",
+          "content",
+          "source",
+          "sourceType"
+        ]
+      },
+      "UpdateCommentDto": {
+        "type": "object",
+        "properties": {}
       },
       "CreateCategoryDto": {
         "type": "object",

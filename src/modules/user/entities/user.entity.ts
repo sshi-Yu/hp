@@ -1,7 +1,8 @@
 import { baseCol } from "src/common/entity/col.entity";
 import { Sex } from "src/common/enum/common.enum";
+import { Comment } from "src/modules/comment/entities/comment.entity";
 import { Role } from "src/modules/role/entities/role.entity";
-import { BeforeRemove, Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from "typeorm";
+import { BeforeRemove, Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryColumn } from "typeorm";
 
 @Entity({
     name: "user"
@@ -11,14 +12,16 @@ export class User extends baseCol {
     @Column({
         comment: "用户名",
         length: 12,
-        unique: true
+        unique: true,
+        nullable: true
     })
     account: string;
 
     @Column({
         comment: "password",
         length: 128,
-        select: false
+        select: false,
+        nullable: true
     })
     password: string;
 
@@ -51,6 +54,13 @@ export class User extends baseCol {
     avatar: string;
 
     @Column({
+        comment: "头像地址",
+        default: "",
+        length: 128
+    })
+    website: string;
+
+    @Column({
         comment: "签名",
         default: "",
         length: 128
@@ -74,7 +84,8 @@ export class User extends baseCol {
     @Column({
         comment: "email",
         length: 64,
-        nullable: true
+        nullable: true,
+        unique: true
     })
     email: string;
 
@@ -104,4 +115,7 @@ export class User extends baseCol {
         name: "user_role",
     })
     roles: Role[];
+
+    @OneToMany(() => Comment, comment => comment.reviewer)
+    comments: Comment[];
 }
