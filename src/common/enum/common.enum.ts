@@ -45,3 +45,15 @@ export enum ImageType {
     Photo = "photo",
     Illustration = "illustration"
 }
+
+export enum FriendStatusCode {
+    Rejected = "R",
+    Fulfilled = "F",
+    Pending = "P"
+}
+
+export enum SourceType {
+    Post = "P",
+    Talk = "T",
+    Friend = "F"
+}
